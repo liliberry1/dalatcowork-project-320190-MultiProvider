@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: RoutePage.LoginPage,
+        initialRoute: RoutePage.SplashPage,
         onGenerateRoute: Router.generatorRoute,
       ),
     );

@@ -22,16 +22,16 @@ class FileHelper{
     return file.writeAsString(content);
   }
 
-  Future<int> readAccessToken() async {
+  Future<String> readAccessToken() async {
     try {
       final file = await localFile;
       // Read the file
       String contents = await file.readAsString();
 
-      return int.parse(contents);
+      return contents;
     } catch (e) {
       // If encountering an error, return 0
-      return 0;
+      return null;
     }
   }
 
