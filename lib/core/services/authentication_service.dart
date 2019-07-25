@@ -13,8 +13,13 @@ class AuthenticationService {
 
   Future<bool> login(String userName) async {
     String accessToken = await _api.login(userName);
-    saveAccessToken(accessToken);
+//    saveAccessToken(accessToken);
     return accessToken.isNotEmpty;
+  }
+
+  Future<String> loginWithFacebook(String accessToken) async{
+    await _api.loginWithFacebook(accessToken);
+//    saveAccessToken(accessToken);
   }
 
 

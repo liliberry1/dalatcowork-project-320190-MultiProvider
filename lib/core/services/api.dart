@@ -7,6 +7,7 @@ class Api{
   final dalatcoworkAPI = "https://egamebe.dalatcowork.com/";
   final auth = "https://egamebe.dalatcowork.com/auth/facebook";
 
+
   var client = http.Client();
 
   Future<String> login(String userName) async{
@@ -22,7 +23,8 @@ class Api{
   Future<String> loginWithFacebook(String facebookAccessToken) async{
     Map<String, dynamic> params = Map();
     params['access_token'] = facebookAccessToken;
-    var response = await client.post('$dalatcoworkAPI/auth/facebook',body:
+    var response = await client.post(auth,body:
     params);
+    print("response Facebook ${response.body}");
   }
 }

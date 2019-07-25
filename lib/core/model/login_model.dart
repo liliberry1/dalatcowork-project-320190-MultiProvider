@@ -50,8 +50,9 @@ class LoginModel extends ChangeNotifier{
       case FacebookLoginStatus.loggedIn:
         print("LoggedIn");
         print("facebook token: ${facebookLoginResult.accessToken.token}");
-        _authenticationService.saveAccessToken(facebookLoginResult.accessToken.token);
-
+//        _authenticationService.loginWithFacebook(facebookLoginResult
+//            .accessToken.token);
+        _authenticationService.loginWithFacebook("EAAdbx65q7sYBAKwunLaIxOGcwtl04EcDQJZBVpKTKSiUQsSMiZCOBnFeq7DZCHqTw5JiU8m15AF0oirNY5kuX7lbpWEu1PTEE3QreLxav34x4UEZCYHEZBl1h57fmveOpDrZA0wfzNUZBKmeZB0xk6fZBdRJYR3RjT1xZBBj9zoS8IH8D049EKEbuJ");
         onLoginStatusChanged(true);
         break;
     }
