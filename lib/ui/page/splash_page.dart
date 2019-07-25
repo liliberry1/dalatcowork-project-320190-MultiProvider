@@ -15,13 +15,14 @@ class _SplashPageState extends State<SplashPage> {
 SplashModel _model;
 Timer _timer;
 
-  fetch(){
+  fetch() async {
     _timer = Timer(Duration(seconds: 3),() async {
+      print('await fetch login');
       await _model.fetchLogin();
-      if (_model.hasAccessToken) {
-        Navigator.pushReplacementNamed(context, RoutePage.HomePage);
-      } else {
+      if (_model.hasAccessToken == null || !_model.hasAccessToken) {
         Navigator.pushReplacementNamed(context, RoutePage.LoginPage);
+      } else {
+        Navigator.pushReplacementNamed(context, RoutePage.HomePage);
       }
       print("push");
     });

@@ -52,7 +52,7 @@ class FileHelper {
     await getLocalFile.then((tempFile){
       file = tempFile;
     });
-    bool isExits;
+    bool isExits = false;
     var accessToken = null;
     await checkExistFile(file).then((exits){
     isExits = exits;
@@ -64,7 +64,7 @@ class FileHelper {
   }
 
   Future<bool> checkExistFile(File file) async {
-    file.exists();
+    return file.exists();
   }
 
   Future<bool> deleteFileAccessToken() async {

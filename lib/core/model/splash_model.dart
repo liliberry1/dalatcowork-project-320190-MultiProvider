@@ -22,7 +22,11 @@ class SplashModel extends ChangeNotifier{
 
 
    fetchLogin(){
-    setHasAccessToken(_authenticationService.hasAccessToken());
+    bool value = false;
+    _authenticationService.hasAccessToken().then((has){
+      value = has;
+    });
+    setHasAccessToken(value);
   }
 
 

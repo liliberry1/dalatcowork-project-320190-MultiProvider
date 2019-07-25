@@ -20,9 +20,9 @@ class AuthenticationService {
 
   Future<String> fetchAndGetAccessToken() => _fileHelper.getAccessToken();
 
-  bool hasAccessToken() {
-    fetchAndGetAccessToken().then((accessToken) {
-      return accessToken.isNotEmpty;
+  Future<bool> hasAccessToken() async {
+    await fetchAndGetAccessToken().then((accessToken) {
+    return accessToken.toString().isNotEmpty;
     });
   }
 }
