@@ -9,6 +9,8 @@ class AuthenticationService {
       : _api = api,
         _fileHelper = FileHelper();
 
+
+
   Future<bool> login(String userName) async {
     String accessToken = await _api.login(userName);
     if (accessToken.isNotEmpty) {
@@ -25,4 +27,7 @@ class AuthenticationService {
     return accessToken.toString().isNotEmpty;
     });
   }
+
+
+
 }
