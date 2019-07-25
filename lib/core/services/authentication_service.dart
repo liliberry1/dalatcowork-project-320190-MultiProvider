@@ -1,14 +1,28 @@
 import 'package:project_320190/core/services/api.dart';
+import 'package:project_320190/core/helper/file_helper.dart';
 
 class AuthenticationService {
-
   final Api _api;
+  FileHelper _fileHelper;
 
+  AuthenticationService({Api api})
+      : _api = api,
+        _fileHelper = FileHelper();
 
-  AuthenticationService({Api api}) : _api = api;
+  Future<bool> login(String userName) async {
+    String accessToken = await _api.login(userName);
+    if (accessToken.isNotEmpty) {
+      //TODO: get AccessToken from server
+      _fileHelper.writeData(accessToken);
+    }
+    return accessToken.isNotEmpty;
+  }
 
-  Future<bool> login(String userName) async{
-    bool success = await _api.login(userName);
-    return success;
+  Future<String> fetchAndGetAccessToken() => _fileHelper.getAccessToken();
+
+  bool hasAccessToken() {
+    fetchAndGetAccessToken().then((accessToken) {
+      return accessToken.isNotEmpty;
+    });
   }
 }

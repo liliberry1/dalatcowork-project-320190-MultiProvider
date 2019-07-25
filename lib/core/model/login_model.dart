@@ -12,7 +12,6 @@ class LoginModel extends ChangeNotifier{
   LoginModel({@required AuthenticationService authenticationService}):
         _authenticationService = authenticationService;
 
-
   setBusy(bool value){
     _busy = value;
     notifyListeners();

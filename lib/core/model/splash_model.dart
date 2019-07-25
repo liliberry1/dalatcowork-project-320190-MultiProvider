@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:project_320190/core/helper/file_helper.dart';
+import 'package:project_320190/core/services/authentication_service.dart';
 
 class SplashModel extends ChangeNotifier{
 
-  bool _wasLogin = false;
+  AuthenticationService _authenticationService;
 
-  bool get wasLogin => _wasLogin;
 
-  setWasLogin(bool value){
-    _wasLogin = value;
+  SplashModel({AuthenticationService authenticatonService}):
+        _authenticationService = authenticatonService;
+
+  bool _hasAccessToken = false;
+
+  bool get hasAccessToken => _hasAccessToken;
+
+
+  setHasAccessToken(bool value){
+    _hasAccessToken = value;
     notifyListeners();
   }
 
-  bool fetchLogin(){
-    var accessToken = FileHelper().readAccessToken();
-    if(accessToken!= null){
-      setWasLogin(true);
-    }else{
-      setWasLogin(false);
-    }
 
+   fetchLogin(){
+    setHasAccessToken(_authenticationService.hasAccessToken());
   }
+
 
 }

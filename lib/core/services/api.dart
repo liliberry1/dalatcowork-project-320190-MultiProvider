@@ -7,12 +7,13 @@ class Api{
 
   var client = http.Client();
 
-  Future<bool> login(String userName) async{
+  Future<String> login(String userName) async{
     Map<String, dynamic> params = Map();
     params['user_name'] = userName;
     params['password'] = '123';
     
     var response = await client.post('$api/login',body: params);
-    return jsonDecode(response.body)['success'];
+    //TODO: replace to AccessToken
+    return jsonDecode(response.body)['success'].toString();
   }
 }

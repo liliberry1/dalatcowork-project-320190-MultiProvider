@@ -18,7 +18,7 @@ Timer _timer;
   fetch(){
     _timer = Timer(Duration(seconds: 3),() async {
       await _model.fetchLogin();
-      if (_model.wasLogin) {
+      if (_model.hasAccessToken) {
         Navigator.pushReplacementNamed(context, RoutePage.HomePage);
       } else {
         Navigator.pushReplacementNamed(context, RoutePage.LoginPage);
@@ -42,7 +42,7 @@ Timer _timer;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SplashModel>.value(
-      value: SplashModel(),
+      value: SplashModel(authenticatonService: Provider.of(context)),
       child: Consumer<SplashModel>(builder: (context, model, child) {
         _model = model;
         return Scaffold(

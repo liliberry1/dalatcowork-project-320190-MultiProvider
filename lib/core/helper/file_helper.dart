@@ -2,32 +2,44 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
+class FileHelper {
+  final String _fileName = "accessToken";
 
-
-
-class FileHelper{
-
-  Future<String> get localPath async{
+  Future<String> get getLocalPath async {
     var dir = await getApplicationDocumentsDirectory();
     return dir.path;
   }
 
-  Future<File> get localFile async{
-    final path = localPath;
-    return File('$path/accTke22145.txt');
+  Future<File> get getLocalFile async {
+    final path = getLocalPath;
+    return File('$path/$_fileName.txt');
   }
 
-  Future<File> writeData(String content) async{
-    final file = await localFile;
+  Future<File> writeData(String content) async {
+    File file;
+    getLocalFile.then((tempFile){
+      file = tempFile;
+    });
+    bool isExist = true;
+    await checkExistFile(file).then((exits){
+      isExist = exits;
+    });
+      if (!isExist) {
+        String filePath;
+        await getLocalPath.then((path){
+          filePath = path;
+        });
+      await File(filePath).create(recursive: true).then((tempFile) {
+        file = tempFile;
+      });
+    }
     return file.writeAsString(content);
   }
 
-  Future<String> readAccessToken() async {
+  Future<String> readFile(File file) async {
     try {
-      final file = await localFile;
       // Read the file
       String contents = await file.readAsString();
-
       return contents;
     } catch (e) {
       // If encountering an error, return 0
@@ -35,5 +47,28 @@ class FileHelper{
     }
   }
 
+  Future<String> getAccessToken() async {
+    File file;
+    await getLocalFile.then((tempFile){
+      file = tempFile;
+    });
+    bool isExits;
+    var accessToken = null;
+    await checkExistFile(file).then((exits){
+    isExits = exits;
+    });
+    if (isExits) {
+      accessToken = readFile(file);
+    }
+    return accessToken;
+  }
 
+  Future<bool> checkExistFile(File file) async {
+    file.exists();
+  }
+
+  Future<bool> deleteFileAccessToken() async {
+    final file = await getLocalFile;
+    file.delete();
+  }
 }
