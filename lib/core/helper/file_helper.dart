@@ -16,6 +16,7 @@ class FileHelper {
   }
 
   Future<File> writeData(String content) async {
+    print("function writeData");
     File file;
     getLocalFile.then((tempFile){
       file = tempFile;
@@ -30,9 +31,11 @@ class FileHelper {
           filePath = path;
         });
       await File(filePath).create(recursive: true).then((tempFile) {
+        print("created file");
         file = tempFile;
       });
     }
+    print("saved data");
     return file.writeAsString(content);
   }
 

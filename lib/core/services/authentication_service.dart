@@ -13,11 +13,14 @@ class AuthenticationService {
 
   Future<bool> login(String userName) async {
     String accessToken = await _api.login(userName);
-    if (accessToken.isNotEmpty) {
-      //TODO: get AccessToken from server
-      _fileHelper.writeData(accessToken);
-    }
+    saveAccessToken(accessToken);
     return accessToken.isNotEmpty;
+  }
+
+
+  saveAccessToken(String accessToken){
+    print("function saveAccessToken");
+      _fileHelper.writeData(accessToken);
   }
 
   Future<String> fetchAndGetAccessToken() => _fileHelper.getAccessToken();
