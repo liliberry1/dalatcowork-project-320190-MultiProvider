@@ -7,7 +7,6 @@ class Api{
   final dalatcoworkAPI = "https://egamebe.dalatcowork.com/";
   final auth = "https://egamebe.dalatcowork.com/auth/facebook";
 
-
   var client = http.Client();
 
   Future<String> login(String userName) async{
