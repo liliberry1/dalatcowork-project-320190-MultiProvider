@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_320190/core/constant_app/route_page.dart';
+import 'package:project_320190/core/constant/route_page.dart';
 import 'package:project_320190/ui/page/home_page.dart';
 import 'package:project_320190/ui/page/login_app_page.dart';
 import 'package:project_320190/ui/page/login_page.dart';

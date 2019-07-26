@@ -4,7 +4,7 @@ import 'package:project_320190/ui/provider_setup.dart';
 import 'package:project_320190/ui/router.dart';
 import 'package:provider/provider.dart';
 
-import 'core/constant_app/route_page.dart';
+import 'core/constant/route_page.dart';
 
 void main() => runApp(MyApp());
 

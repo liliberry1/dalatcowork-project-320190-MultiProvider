@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:project_320190/core/constant_app/route_page.dart';
+import 'package:project_320190/core/constant/route_page.dart';
 import 'package:project_320190/core/model/splash_model.dart';
 import 'package:provider/provider.dart';
 
